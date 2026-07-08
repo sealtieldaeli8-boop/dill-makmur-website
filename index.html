@@ -6,11 +6,524 @@
     <title>DILL MAKMUR - Bengkel Motor Terpercaya di Batam</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #DC143C;
+            --secondary-color: #1a1a1a;
+            --light-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            transition: all 0.3s;
+            margin: 0 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #1a1a2e 100%);
+            color: white;
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: rgba(220, 20, 60, 0.1);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(220, 20, 60, 0.05);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        .hero-content .lead {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            animation: slideInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            animation: slideInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .hero-buttons {
+            animation: slideInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .btn-primary-custom {
+            background: var(--primary-color);
+            border: none;
+            padding: 12px 40px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            background: #b91230;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+            color: white !important;
+        }
+
+        .btn-outline-light-custom {
+            border: 2px solid white;
+            color: white;
+            padding: 10px 38px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-section {
+            background: linear-gradient(135deg, var(--light-color) 0%, #fff 100%);
+            padding: 80px 0;
+        }
+
+        .about-image {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px solid var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-list li {
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .about-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h5 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-color) 0%, #fff 100%);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(220, 20, 60, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            flex-direction: column;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h5 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-overlay p {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #2d2d2d 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .contact-info-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .contact-info-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-info-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background: rgba(255,255,255,0.15);
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 10px rgba(220, 20, 60, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            border-top: 3px solid var(--primary-color);
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+                min-height: auto;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .lead {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+        }
+
+        /* AOS Animations */
+        [data-aos] {
+            opacity: 0;
+        }
+
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#home">
                 <i class="fas fa-tools"></i> DILL MAKMUR
@@ -33,41 +546,44 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <div class="container h-100 d-flex align-items-center">
-            <div class="row w-100">
-                <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 class="display-4 fw-bold text-white mb-4">DILL MAKMUR</h1>
-                    <p class="lead text-white mb-4">Bengkel Motor Terpercaya dengan Layanan Terbaik di Batam</p>
-                    <p class="text-white mb-4">Kami siap memberikan solusi servis motor Anda dengan teknisi berpengalaman dan suku cadang berkualitas.</p>
-                    <div>
-                        <a href="#kontak" class="btn btn-danger btn-lg me-3">Hubungi Kami</a>
-                        <a href="#layanan" class="btn btn-outline-light btn-lg">Lihat Layanan</a>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-duration="800">
+                    <h1>DILL MAKMUR</h1>
+                    <p class="lead">Bengkel Motor Terpercaya</p>
+                    <p>Kami siap memberikan solusi servis motor Anda dengan teknisi berpengalaman dan suku cadang berkualitas tinggi. Dipercaya oleh ribuan pelanggan di Batam.</p>
+                    <div class="hero-buttons">
+                        <a href="#kontak" class="btn btn-primary-custom me-3">Hubungi Kami</a>
+                        <a href="#layanan" class="btn btn-outline-light-custom">Lihat Layanan</a>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <img src="https://via.placeholder.com/500x400?text=Bengkel+Motor" class="img-fluid rounded" alt="Bengkel Motor">
+                <div class="col-lg-6 hero-image" data-aos="fade-left" data-aos-duration="800">
+                    <img src="https://images.unsplash.com/photo-1599955810694-b5d1d8db8ef5?w=500&h=400&fit=crop" alt="Bengkel Motor DILL MAKMUR" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tentang Section -->
-    <section id="tentang" class="py-5 bg-light">
+    <section id="tentang" class="about-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Tentang DILL MAKMUR</h2>
+            <h2 class="section-title" data-aos="fade-up">Tentang DILL MAKMUR</h2>
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <img src="https://via.placeholder.com/400x300?text=Tentang+Kami" class="img-fluid rounded" alt="Tentang Kami">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?w=500&h=400&fit=crop" alt="Tentang Kami" loading="lazy">
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <h3 class="mb-3">Bengkel Motor Profesional & Terpercaya</h3>
-                    <p class="mb-3">DILL MAKMUR adalah bengkel motor yang telah melayani masyarakat Batam dengan dedikasi penuh. Kami berkomitmen memberikan pelayanan terbaik dengan harga yang kom[...]
-                    <p class="mb-3">Tim teknisi kami yang berpengalaman siap menangani berbagai jenis perbaikan dan perawatan motor Anda.</p>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Teknisi Berpengalaman</li>
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Suku Cadang Original</li>
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Harga Kompetitif</li>
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Pelayanan Cepat</li>
+                <div class="col-lg-6 about-content" data-aos="fade-left">
+                    <h3>Bengkel Motor Profesional & Terpercaya</h3>
+                    <p>DILL MAKMUR adalah bengkel motor terkemuka yang telah melayani masyarakat Batam dengan dedikasi penuh selama bertahun-tahun. Kami berkomitmen memberikan pelayanan terbaik dengan harga yang kompetitif dan hasil yang memuaskan.</p>
+                    <p>Tim teknisi kami yang berpengalaman dan terlatih siap menangani berbagai jenis perbaikan dan perawatan motor dengan standar internasional. Setiap pekerjaan kami tangani dengan profesional dan penuh tanggung jawab.</p>
+                    <ul class="list-unstyled about-list">
+                        <li>Teknisi Berpengalaman 15+ Tahun</li>
+                        <li>Suku Cadang Original Terjamin</li>
+                        <li>Harga Kompetitif & Transparan</li>
+                        <li>Pelayanan Cepat & Profesional</li>
+                        <li>Garansi Kerja & Suku Cadang</li>
                     </ul>
                 </div>
             </div>
@@ -75,62 +591,50 @@
     </section>
 
     <!-- Layanan Section -->
-    <section id="layanan" class="py-5">
+    <section id="layanan" class="services-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Layanan Kami</h2>
+            <h2 class="section-title" data-aos="fade-up">Layanan Kami</h2>
             <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-oil-can fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Ganti Oli & Filter</h5>
-                            <p class="card-text">Pelayanan ganti oli berkualitas dan filter udara untuk performa motor optimal.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <i class="fas fa-oil-can"></i>
+                        <h5>Ganti Oli & Filter</h5>
+                        <p>Pelayanan ganti oli berkualitas dan filter udara untuk performa motor optimal dan lebih awet.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-cog fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Servis Mesin</h5>
-                            <p class="card-text">Perbaikan dan overhaul mesin dengan teknisi profesional dan berpengalaman.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <i class="fas fa-cog"></i>
+                        <h5>Servis Mesin</h5>
+                        <p>Perbaikan dan overhaul mesin dengan teknisi profesional dan berpengalaman menggunakan peralatan modern.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-wrench fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Perbaikan Umum</h5>
-                            <p class="card-text">Perbaikan berbagai komponen motor mulai dari kecil hingga besar.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <i class="fas fa-wrench"></i>
+                        <h5>Perbaikan Umum</h5>
+                        <p>Perbaikan berbagai komponen motor mulai dari kecil hingga besar dengan hasil yang memuaskan.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-bicycle fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Servis Berkala</h5>
-                            <p class="card-text">Paket servis berkala untuk menjaga kondisi motor Anda tetap prima.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <i class="fas fa-sync"></i>
+                        <h5>Servis Berkala</h5>
+                        <p>Paket servis berkala untuk menjaga kondisi motor Anda tetap prima dan performa optimal.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-spray-can fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Cat & Penampilan</h5>
-                            <p class="card-text">Layanan pengecatan dan perawatan penampilan motor Anda.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <i class="fas fa-spray-can"></i>
+                        <h5>Cat & Penampilan</h5>
+                        <p>Layanan pengecatan profesional dan perawatan penampilan motor dengan hasil rapi berkualitas tinggi.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="fas fa-car fa-3x text-danger mb-3"></i>
-                            <h5 class="card-title">Aksesori Motor</h5>
-                            <p class="card-text">Tersedia berbagai aksesori motor berkualitas dengan harga terjangkau.</p>
-                        </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card">
+                        <i class="fas fa-star"></i>
+                        <h5>Aksesori Motor</h5>
+                        <p>Tersedia berbagai aksesori motor berkualitas dengan harga terjangkau dan desain terkini.</p>
                     </div>
                 </div>
             </div>
@@ -138,34 +642,61 @@
     </section>
 
     <!-- Galeri Section -->
-    <section id="galeri" class="py-5 bg-light">
+    <section id="galeri" class="gallery-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Galeri Pekerjaan Kami</h2>
+            <h2 class="section-title" data-aos="fade-up">Galeri Pekerjaan Kami</h2>
             <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card overflow-hidden">
-                        <img src="https://via.placeholder.com/400x300?text=Servis+1" class="card-img-top" alt="Pekerjaan 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Servis Rutin</h5>
-                            <p class="card-text">Pemeliharaan rutin motor pelanggan setia kami.</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1553881081-a07ecddf7a42?w=400&h=300&fit=crop" alt="Servis Rutin" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Servis Rutin</h5>
+                            <p>Pemeliharaan berkala motor</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card overflow-hidden">
-                        <img src="https://via.placeholder.com/400x300?text=Servis+2" class="card-img-top" alt="Pekerjaan 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Perbaikan Mesin</h5>
-                            <p class="card-text">Overhaul mesin dengan hasil memuaskan.</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1486328335184-3b0f2dd1fb85?w=400&h=300&fit=crop" alt="Perbaikan Mesin" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Perbaikan Mesin</h5>
+                            <p>Overhaul mesin profesional</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card overflow-hidden">
-                        <img src="https://via.placeholder.com/400x300?text=Servis+3" class="card-img-top" alt="Pekerjaan 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Pengecatan Motor</h5>
-                            <p class="card-text">Hasil pengecatan yang rapi dan berkualitas.</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Pengecatan Motor" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Pengecatan Motor</h5>
+                            <p>Hasil pengecatan berkualitas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=400&h=300&fit=crop" alt="Modifikasi Motor" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Modifikasi Motor</h5>
+                            <p>Tuning & customization</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1486327957891-6a3a64e78111?w=400&h=300&fit=crop" alt="Spare Parts" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Spare Parts Original</h5>
+                            <p>Suku cadang terpercaya</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=400&h=300&fit=crop" alt="Mekanik Profesional" loading="lazy">
+                        <div class="gallery-overlay">
+                            <h5>Tim Profesional</h5>
+                            <p>Teknisi berpengalaman</p>
                         </div>
                     </div>
                 </div>
@@ -174,53 +705,50 @@
     </section>
 
     <!-- Testimoni Section -->
-    <section id="testimoni" class="py-5">
+    <section id="testimoni" class="testimonial-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Testimoni Pelanggan</h2>
+            <h2 class="section-title" data-aos="fade-up">Testimoni Pelanggan</h2>
             <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">"Pelayanan sangat memuaskan, teknisinya profesional dan hasilnya bagus!"</p>
-                            <p class="fw-bold">- Budi Santoso</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
+                        <p class="testimonial-text">"Pelayanan sangat memuaskan, teknisinya profesional dan hasilnya bagus sekali. Motor saya terasa seperti baru lagi!"</p>
+                        <p class="testimonial-author">Budi Santoso</p>
+                        <small class="text-muted">Pengguna Motor Scoopy</small>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">"Harga kompetitif dan pekerjaan rapi. Saya rekomendasikan ke teman-teman!"</p>
-                            <p class="fw-bold">- Siti Nurhaliza</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
+                        <p class="testimonial-text">"Harga kompetitif dan pekerjaan rapi. Saya rekomendasikan ke teman-teman dan keluarga saya. Tidak akan kecewa!"</p>
+                        <p class="testimonial-author">Siti Nurhaliza</p>
+                        <small class="text-muted">Pengguna Motor Yamaha</small>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <div class="stars mb-3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </div>
-                            <p class="card-text">"Servis cepat dan hasil memuaskan. Puas dengan layanannya!"</p>
-                            <p class="fw-bold">- Ahmad Wijaya</p>
+                <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
+                        <p class="testimonial-text">"Servis cepat dan hasil memuaskan. Tim DILL MAKMUR sangat responsif dan ramah. Puas dengan layanannya!"</p>
+                        <p class="testimonial-author">Ahmad Wijaya</p>
+                        <small class="text-muted">Pengguna Motor Honda</small>
                     </div>
                 </div>
             </div>
@@ -228,35 +756,45 @@
     </section>
 
     <!-- Kontak Section -->
-    <section id="kontak" class="py-5 bg-dark text-white">
+    <section id="kontak" class="contact-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold">Hubungi Kami</h2>
+            <h2 class="section-title text-white" data-aos="fade-up">Hubungi Kami</h2>
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <h4 class="mb-3">Informasi Kontak</h4>
-                    <div class="mb-3">
-                        <i class="fas fa-map-marker-alt text-danger me-2"></i>
-                        <strong>Alamat:</strong> Mandalay Blok B No. 6, Batam
+                    <h4 class="mb-4" data-aos="fade-right">Informasi Kontak</h4>
+                    
+                    <div class="contact-info-card" data-aos="fade-right" data-aos-delay="100">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <strong>Alamat</strong>
+                        <p>Mandalay Blok B No. 6, Batam, Kepulauan Riau 29432</p>
                     </div>
-                    <div class="mb-3">
-                        <i class="fas fa-phone text-danger me-2"></i>
-                        <strong>Telepon:</strong> <a href="tel:087870032231" class="text-white text-decoration-none">0878-7003-2231</a>
+
+                    <div class="contact-info-card" data-aos="fade-right" data-aos-delay="200">
+                        <i class="fas fa-phone"></i>
+                        <strong>Telepon</strong>
+                        <p><a href="tel:087870032231" class="text-white text-decoration-none">0878-7003-2231</a></p>
                     </div>
-                    <div class="mb-3">
-                        <i class="fas fa-whatsapp text-danger me-2"></i>
-                        <strong>WhatsApp:</strong> <a href="https://wa.me/6287870032231" target="_blank" class="text-white text-decoration-none">0878-7003-2231</a>
+
+                    <div class="contact-info-card" data-aos="fade-right" data-aos-delay="300">
+                        <i class="fab fa-whatsapp"></i>
+                        <strong>WhatsApp</strong>
+                        <p><a href="https://wa.me/6287870032231" target="_blank" class="text-white text-decoration-none">0878-7003-2231</a></p>
                     </div>
-                    <div class="mb-3">
-                        <i class="fas fa-clock text-danger me-2"></i>
-                        <strong>Jam Operasional:</strong><br>
-                        Senin - Jumat: 08:00 - 20:00<br>
-                        Sabtu: 08:00 - 20:00<br>
-                        Minggu: Tutup
+
+                    <div class="contact-info-card" data-aos="fade-right" data-aos-delay="400">
+                        <i class="fas fa-clock"></i>
+                        <strong>Jam Operasional</strong>
+                        <p>
+                            Senin - Jumat: 08:00 - 20:00<br>
+                            Sabtu: 08:00 - 20:00<br>
+                            Minggu: Tutup
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                    <h4 class="mb-3">Kirim Pesan</h4>
-                    <form>
+
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <h4 class="mb-4">Kirim Pesan</h4>
+                    <form class="contact-form">
                         <div class="mb-3">
                             <input type="text" class="form-control" placeholder="Nama Anda" required>
                         </div>
@@ -264,9 +802,12 @@
                             <input type="email" class="form-control" placeholder="Email Anda" required>
                         </div>
                         <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="No. Telepon/WhatsApp" required>
+                        </div>
+                        <div class="mb-3">
                             <textarea class="form-control" rows="4" placeholder="Pesan Anda" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-danger w-100">Kirim Pesan</button>
+                        <button type="submit" class="btn btn-primary-custom w-100">Kirim Pesan</button>
                     </form>
                 </div>
             </div>
@@ -274,22 +815,59 @@
     </section>
 
     <!-- Maps Section -->
-    <section class="py-5">
+    <section class="maps-section py-5">
         <div class="container">
-            <h3 class="text-center mb-4">Lokasi Kami</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7891234567894!2d104.7!3d1.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d15e234567890%3A0x1234567890a[...]
+            <h3 class="section-title" data-aos="fade-up">Lokasi Kami</h3>
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-12">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.789123456789!2d104.72!3d1.13!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d15e7890123456%3A0x1234567890abcdef!2sMandalay%20Blok%20B%20No.%206%2C%20Batam!5e0!3m2!1sid!2sid!4v1234567890123" width="100%" height="450" style="border:0; border-radius: 10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4">
+    <footer class="text-white text-center py-4">
         <div class="container">
-            <p>&copy; 2024 DILL MAKMUR - Bengkel Motor Batam. All Rights Reserved.</p>
-            <p>Dipercaya oleh ribuan pelanggan di Batam</p>
+            <p class="mb-1">&copy; 2024 DILL MAKMUR - Bengkel Motor Batam. All Rights Reserved.</p>
+            <p>Dipercaya oleh ribuan pelanggan di Batam untuk kebutuhan servis motor Anda</p>
+            <div class="mt-3">
+                <a href="https://facebook.com" class="text-white me-3" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com" class="text-white me-3" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://whatsapp.com" class="text-white" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // AOS Initialize
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim. Kami akan menghubungi Anda segera.');
+            this.reset();
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
